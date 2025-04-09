@@ -1,6 +1,6 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Feather from 'react-native-vector-icons/Feather';
+// import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SettingsPage from './SettingsPage';
 import AccountPage from './AccountPage';
@@ -16,9 +16,9 @@ const HomeTabs = () => {
           let iconName;
 
           if (route.name === 'Home') {
-            return <Feather name="home" size={size} color={color} />;
+            // return <Feather name="home" size={size} color={color} />;
           } else if (route.name === 'Settings') {
-            <Feather name="settings" size={24} color="black" />
+            // <Feather name="settings" size={24} color="black" />
           } else if (route.name === 'Account') {
             iconName = focused ? 'person' : 'person-outline';
           }

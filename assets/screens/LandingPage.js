@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Animated, StyleSheet } from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import AntDesign from 'react-native-vector-icons/AntDesign';
+// import Feather from 'react-native-vector-icons/Feather';
+// import AntDesign from 'react-native-vector-icons/AntDesign';
 import { styles } from '../styles/LandingPageStyles';
 
 const LandingPage = ({ navigation }) => {
@@ -28,7 +28,7 @@ const LandingPage = ({ navigation }) => {
           style={styles.heroButton}
           onPress={() => navigation.navigate('Home')}>
           <Text style={styles.heroButtonText}>Start Translating</Text>
-          <Feather name="arrow-right" size={20} color="white" style={styles.arrowIcon} />
+          {/* <Feather name="arrow-right" size={20} color="white" style={styles.arrowIcon} /> */}
         </TouchableOpacity>
       </View>
 
@@ -40,7 +40,7 @@ const LandingPage = ({ navigation }) => {
           {/* Feature 1 */}
           <Animated.View style={[styles.featureItem, { opacity: fadeAnim }]}>
             <View style={styles.iconWrapper}>
-              <AntDesign name="sound" size={40} color="white" />
+              {/* <AntDesign name="sound" size={40} color="white" /> */}
             </View>
             <Text style={styles.featureTitle}>Voice Input</Text>
             <Text style={styles.featureDescription}>
@@ -51,7 +51,7 @@ const LandingPage = ({ navigation }) => {
           {/* Feature 2 */}
           <Animated.View style={[styles.featureItem, { opacity: fadeAnim }]}>
             <View style={styles.iconWrapper}>
-              <Feather name="globe" size={40} color="white" />
+              {/* <Feather name="globe" size={40} color="white" /> */}
             </View>
             <Text style={styles.featureTitle}>Multiple Languages</Text>
             <Text style={styles.featureDescription}>
@@ -62,7 +62,7 @@ const LandingPage = ({ navigation }) => {
           {/* Feature 3 */}
           <Animated.View style={[styles.featureItem, { opacity: fadeAnim }]}>
             <View style={styles.iconWrapper}>
-              <AntDesign name="message1" size={40} color="white" />
+              {/* <AntDesign name="message1" size={40} color="white" /> */}
             </View>
             <Text style={styles.featureTitle}>Contextual Information</Text>
             <Text style={styles.featureDescription}>
@@ -82,7 +82,7 @@ const LandingPage = ({ navigation }) => {
           style={styles.ctaButton}
           onPress={() => navigation.navigate('Home')}>
           <Text style={styles.ctaButtonText}>Try iVoice Now</Text>
-          <Feather name="arrow-right" size={20} color="#2563eb" style={styles.arrowIcon} />
+          {/* <Feather name="arrow-right" size={20} color="#2563eb" style={styles.arrowIcon} /> */}
         </TouchableOpacity>
       </View>
 
