@@ -5,7 +5,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-# === DATABASE SETUP ===
+
 DB_NAME = 'ivoice_local.db'
 
 def init_db():
@@ -40,7 +40,7 @@ def init_db():
                     )''')
         conn.commit()
 
-# === ROUTES ===
+
 @app.route("/api/v1/speech-to-text", methods=["POST"])
 def speech_to_text():
     audio_file = request.files.get("audio")
@@ -117,7 +117,6 @@ def get_translation_history(user_id):
     return jsonify({"history": history})
 
 
-# === MAIN ===
 if __name__ == "__main__":
     init_db()
     app.run(debug=True)
