@@ -1,0 +1,5 @@
+flask==2.3.3
+SpeechRecognition==3.10.0
+pydub==0.25.1
+pyttsx3==2.90
+requests==2.31.0
