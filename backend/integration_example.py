@@ -8,6 +8,7 @@ You can copy these snippets into your app.py or import the service_helper functi
 # Example 1: Import the service helper functions in your app.py
 # ------------------------------------------------------------------
 # Add this import at the top of your app.py
+from urllib import request
 from service_helper import (
     handle_speech_to_text,
     handle_translation,

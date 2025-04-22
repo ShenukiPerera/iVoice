@@ -1,3 +1,4 @@
+// File: HomePage.jsx
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Switch } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // Corrected import

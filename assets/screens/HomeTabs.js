@@ -1,12 +1,11 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import Feather from 'react-native-vector-icons/Feather';
+//  import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import SettingsPage from './SettingsPage';
 import AccountPage from './AccountPage';
 import HomePage from './HomePage';
 import ConversationPage from './ConversationPage';
-import TestOutput from './test/TTSOutputTest'
 
 const Tab = createBottomTabNavigator();
 
@@ -49,10 +48,9 @@ const HomeTabs = () => {
       })}
     >
       <Tab.Screen name="Home" component={HomePage} />
-      <Tab.Screen name="Settings" component={SettingsPage} />
-      <Tab.Screen name="Account" component={AccountPage} />
+      {/* <Tab.Screen name="Settings" component={SettingsPage} /> */}
+      {/* <Tab.Screen name="Account" component={AccountPage} /> */}
       <Tab.Screen name="Conversation" component={ConversationPage} />
-      <Tab.Screen name="TestOutput" component={TestOutput} />
   </Tab.Navigator>
   );
 };
