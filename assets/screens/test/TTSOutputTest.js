@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
+<<<<<<< Updated upstream:assets/screens/test/TTSOutputTest.js
 import { View, Text, TouchableOpacity, ScrollView, Animated, TextInput } from 'react-native';
 import Tts from 'react-native-tts';  // Import TTS library
 import { styles } from '../../styles/LandingPageStyles';
+=======
+import { View, Text, TouchableOpacity, ScrollView, Animated } from 'react-native';
+// import Feather from 'react-native-vector-icons/Feather';
+// import AntDesign from 'react-native-vector-icons/AntDesign';
+import { styles } from '../styles/LandingPageStyles';
+>>>>>>> Stashed changes:assets/screens/LandingPage.js
 
 const TTSOutputTest = ({ navigation }) => {
   const [fadeAnim] = useState(new Animated.Value(0)); // Initial opacity 0
@@ -27,40 +34,67 @@ const TTSOutputTest = ({ navigation }) => {
     <ScrollView style={styles.container}>
       {/* Hero Section */}
       <View style={styles.heroSection}>
-        <Text style={styles.heroTitle}>Break Language Barriers with iVoice</Text>
+        <Text style={styles.heroTitle}>Speak. Translate. Connect. Welcome to iVoice</Text>
         <Text style={styles.heroSubtitle}>
-          Instant voice and text translation for seamless communication across languages.
+          Real-time voice and text translation designed for global conversations.
         </Text>
         <TouchableOpacity
           style={styles.heroButton}
+<<<<<<< Updated upstream:assets/screens/test/TTSOutputTest.js
           onPress={() => navigation.navigate('Home')}>
           <Text style={styles.heroButtonText}>Start Translating</Text>
+=======
+          onPress={() => navigation.navigate('Home1')}>
+          <Text style={styles.heroButtonText}>Launch Home1 Experience</Text>
+          {/* <Feather name="arrow-right" size={20} color="white" style={styles.arrowIcon} /> */}
+>>>>>>> Stashed changes:assets/screens/LandingPage.js
         </TouchableOpacity>
       </View>
 
       {/* Features Section */}
       <View style={styles.featuresSection}>
-        <Text style={styles.featuresTitle}>Powerful Translation Features</Text>
+        <Text style={styles.featuresTitle}>Discover What Home1 Can Do</Text>
 
         <View style={styles.featuresContainer}>
           <Animated.View style={[styles.featureItem, { opacity: fadeAnim }]}>
+<<<<<<< Updated upstream:assets/screens/test/TTSOutputTest.js
             <Text style={styles.featureTitle}>Voice Input</Text>
+=======
+            <View style={styles.iconWrapper}>
+              {/* <AntDesign name="sound" size={40} color="white" /> */}
+            </View>
+            <Text style={styles.featureTitle}>Live Voice Recognition</Text>
+>>>>>>> Stashed changes:assets/screens/LandingPage.js
             <Text style={styles.featureDescription}>
-              Speak naturally in your language and get instant translations with our voice recognition technology.
+              Say it once—get instant, accurate voice translations powered by smart speech-to-text.
             </Text>
           </Animated.View>
 
           <Animated.View style={[styles.featureItem, { opacity: fadeAnim }]}>
+<<<<<<< Updated upstream:assets/screens/test/TTSOutputTest.js
             <Text style={styles.featureTitle}>Multiple Languages</Text>
+=======
+            <View style={styles.iconWrapper}>
+              {/* <Feather name="globe" size={40} color="white" /> */}
+            </View>
+            <Text style={styles.featureTitle}>Multi-Language UI</Text>
+>>>>>>> Stashed changes:assets/screens/LandingPage.js
             <Text style={styles.featureDescription}>
-              Support for a wide range of languages including English, Hindi, Mandarin, and more coming soon.
+              iVoice supports UI translations, making it easier for users from different regions to use the app.
             </Text>
           </Animated.View>
 
           <Animated.View style={[styles.featureItem, { opacity: fadeAnim }]}>
+<<<<<<< Updated upstream:assets/screens/test/TTSOutputTest.js
             <Text style={styles.featureTitle}>Contextual Information</Text>
+=======
+            <View style={styles.iconWrapper}>
+              {/* <AntDesign name="message1" size={40} color="white" /> */}
+            </View>
+            <Text style={styles.featureTitle}>Cultural Relevance</Text>
+>>>>>>> Stashed changes:assets/screens/LandingPage.js
             <Text style={styles.featureDescription}>
-              Get additional context and cultural insights alongside your translations for better understanding.
+              Get culturally aware translations that help you communicate beyond words.
             </Text>
           </Animated.View>
         </View>
@@ -84,14 +118,20 @@ const TTSOutputTest = ({ navigation }) => {
 
       {/* CTA Section */}
       <View style={styles.ctaSection}>
-        <Text style={styles.ctaTitle}>Ready to start communicating across languages?</Text>
+        <Text style={styles.ctaTitle}>Experience Home1’s Advanced Translation Features</Text>
         <Text style={styles.ctaDescription}>
-          iVoice makes translation easy and accessible for everyone.
+          Tap into real-time communication like never before with Home1.
         </Text>
         <TouchableOpacity
           style={styles.ctaButton}
+<<<<<<< Updated upstream:assets/screens/test/TTSOutputTest.js
           onPress={() => navigation.navigate('Home')}>
           <Text style={styles.ctaButtonText}>Try iVoice Now</Text>
+=======
+          onPress={() => navigation.navigate('Home1')}>
+          <Text style={styles.ctaButtonText}>Go to Home1</Text>
+          {/* <Feather name="arrow-right" size={20} color="#2563eb" style={styles.arrowIcon} /> */}
+>>>>>>> Stashed changes:assets/screens/LandingPage.js
         </TouchableOpacity>
       </View>
 
@@ -103,4 +143,8 @@ const TTSOutputTest = ({ navigation }) => {
   );
 };
 
+<<<<<<< Updated upstream:assets/screens/test/TTSOutputTest.js
 export default TTSOutputTest;
+=======
+export default LandingPage;
+>>>>>>> Stashed changes:assets/screens/LandingPage.js
