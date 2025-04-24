@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 import styles from '../../assets/styles/Home1PageStyles';
 
-const Home1Page = () => {
+const Home1Page = ({ navigation }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image source={require('../../assets/images/worldMap.png')} style={styles.map} />
@@ -32,9 +32,9 @@ const Home1Page = () => {
       <Text style={styles.heading}>SPEAK, UNDERSTAND, CONNECT</Text>
 
       <View style={styles.buttonGrid}>
-        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Voice</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Object</Text></TouchableOpacity>
-        <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Conversation</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Translate')}><Text style={styles.buttonText}>Voice</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} ><Text style={styles.buttonText}>Object</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Conversation')}><Text style={styles.buttonText}>Conversation</Text></TouchableOpacity>
         {/* <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Text</Text></TouchableOpacity>
         <TouchableOpacity style={styles.button}><Text style={styles.buttonText}>Camera</Text></TouchableOpacity> */}
       </View>

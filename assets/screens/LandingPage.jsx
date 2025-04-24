@@ -1,12 +1,11 @@
-// File: LandingPage.jsx
-// Description: Landing page for the iVoice app, showcasing features and languages supported.
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -21,7 +20,7 @@ const features = [
   {
     icon: <Feather name="zap" size={24} color="#0d9488" />,
     title: 'Auto Language Detection',
-    desc: 'Let iVoice identify your language automatically',
+    desc: 'Let iVoice identify your language automatically..............',
   },
   {
     icon: <Feather name="message-square" size={24} color="#9333ea" />,
@@ -30,94 +29,129 @@ const features = [
   },
 ];
 
-const languages = [
-  'English', 'Chinese', 'Hindi'
-];
+const languages = ['English', 'Chinese', 'Hindi'];
 
 const Landing = ({ navigation }) => {
+  const flatListRef = useRef(null);
+  const scrollIndexRef = useRef(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollIndexRef.current = (scrollIndexRef.current + 1) % features.length;
+      flatListRef.current?.scrollToIndex({
+        index: scrollIndexRef.current,
+        animated: true,
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <ScrollView style={styles.container}>
-      {/* Hero Section */}
-      <LinearGradient
-        colors={['#eff6ff', '#ccfbf1']}
-        style={styles.heroSection}
-      >
-        <View style={styles.iconCircle}>
-          <MaterialCommunityIcons name="earth" size={48} color="white" />
+    <LinearGradient
+      colors={['#e0f2fe', '#ccfbf1']}
+      style={styles.gradientBackground}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {/* Hero Section */}
+        <View style={styles.heroSection}>
+          <View style={styles.iconCircle}>
+            <MaterialCommunityIcons name="earth" size={48} color="white" />
+          </View>
+          <Text style={styles.title}>iVoice</Text>
+          <Text style={styles.subtitle}>
+            Break language barriers instantly
+          </Text>
+          <TouchableOpacity
+            style={styles.startButton}
+            onPress={() => navigation.navigate('Home')}
+          >
+            <LinearGradient
+              colors={['#3b82f6', '#14b8a6']}
+              style={styles.startButtonInner}
+            >
+              <Text style={styles.startText}>Start Translating</Text>
+              <Feather name="arrow-right" size={20} color="white" />
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
-        <Text style={styles.title}>iVoice</Text>
-        <Text style={styles.subtitle}>Break language barriers instantly</Text>
-        <TouchableOpacity
-          style={styles.startButton}
-          onPress={() => navigation.navigate('Home')}
-        >
+
+        {/* Features Carousel */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Powerful Features</Text>
+          <FlatList
+            ref={flatListRef}
+            data={features}
+            keyExtractor={(item, index) => index.toString()}
+            horizontal
+            pagingEnabled
+            snapToAlignment="center"
+            decelerationRate="fast"
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingHorizontal: 16 }}
+            renderItem={({ item }) => (
+              <View style={styles.featureCardCarousel}>
+                <View style={styles.featureIcon}>{item.icon}</View>
+                <Text style={styles.featureTitle}>{item.title}</Text>
+                <Text style={styles.featureDesc}>{item.desc}</Text>
+              </View>
+            )}
+          />
+        </View>
+
+        {/* Language Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Languages Supported</Text>
+          <Text style={styles.sectionSubText}>
+            Including English, Hindi, Chinese and more
+          </Text>
+          <View style={styles.languageTags}>
+            {languages.map((lang) => (
+              <View key={lang} style={styles.langTag}>
+                <Text style={styles.langText}>{lang}</Text>
+              </View>
+            ))}
+          </View>
+        </View>
+
+        {/* CTA Section */}
+        <View style={styles.ctaSection}>
           <LinearGradient
             colors={['#3b82f6', '#14b8a6']}
-            style={styles.startButtonInner}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.ctaCard}
           >
-            <Text style={styles.startText}>Start Translating</Text>
-            <Feather name="arrow-right" size={20} color="white" />
+            <View style={styles.ctaIconCircle}>
+              <Feather name="globe" size={28} color="white" />
+            </View>
+            <Text style={styles.ctaTitle}>Ready to communicate globally?</Text>
+            <Text style={styles.ctaSubtitle}>
+              Join millions breaking language barriers with iVoice.
+            </Text>
+            <TouchableOpacity style={styles.ctaButton}>
+              <Text style={styles.ctaButtonText}>Get Started Now</Text>
+            </TouchableOpacity>
           </LinearGradient>
-        </TouchableOpacity>
-      </LinearGradient>
-
-      {/* Features Section */}
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Powerful Translation Features</Text>
-        {features.map((item, index) => (
-          <View key={index} style={styles.featureCard}>
-            <View style={styles.featureIcon}>{item.icon}</View>
-            <View>
-              <Text style={styles.featureTitle}>{item.title}</Text>
-              <Text style={styles.featureDesc}>{item.desc}</Text>
-            </View>
-          </View>
-        ))}
-      </View>
-
-      {/* Language Section */}
-      <View style={[styles.section, { backgroundColor: '#ffffffb3' }]}>
-        <Text style={styles.sectionTitle}>Multiple Languages Supported</Text>
-        <Text style={styles.sectionSubText}>
-          Including English, Hindi, Chinese and more in the future
-        </Text>
-        <View style={styles.languageTags}>
-          {languages.map((lang) => (
-            <View key={lang} style={styles.langTag}>
-              <Text style={styles.langText}>{lang}</Text>
-            </View>
-          ))}
         </View>
-      </View>
 
-      {/* CTA Section */}
-      <View style={styles.ctaSection}>
-        <LinearGradient
-          colors={['#3b82f6', '#14b8a6']}
-          style={styles.ctaCard}
-        >
-          <Text style={styles.ctaTitle}>Ready to communicate globally?</Text>
-          <Text style={styles.ctaSubtitle}>
-            Start using iVoice today and connect with people around the world.
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            © 2025 iVoice - All Rights Reserved
           </Text>
-          <TouchableOpacity style={styles.getStartedBtn}>
-            <Text style={styles.getStartedText}>Get Started Now</Text>
-          </TouchableOpacity>
-        </LinearGradient>
-      </View>
-
-      {/* Footer */}
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>© 2025 iVoice - All Rights Reserved</Text>
-      </View>
-    </ScrollView>
+        </View>
+      </ScrollView>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#fff' },
+  gradientBackground: { flex: 1 },
+  scrollContainer: { paddingBottom: 32 },
+
   heroSection: {
-    paddingVertical: 32,
+    paddingVertical: 45,
     paddingHorizontal: 16,
     alignItems: 'center',
   },
@@ -134,10 +168,15 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   title: { fontSize: 32, fontWeight: 'bold', color: '#1f2937' },
-  subtitle: { fontSize: 16, color: '#4b5563', marginVertical: 8, textAlign: 'center' },
-  startButton: { marginTop: 16, borderRadius: 999, overflow: 'hidden' },
+  subtitle: {
+    fontSize: 16,
+    color: '#4b5563',
+    marginVertical: 8,
+    textAlign: 'center',
+  },
+  startButton: { marginTop: 20, borderRadius: 999, overflow: 'hidden' },
   startButtonInner: {
-    paddingVertical: 16,
+    paddingVertical: 14,
     paddingHorizontal: 32,
     borderRadius: 999,
     flexDirection: 'row',
@@ -145,25 +184,54 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   startText: { color: 'white', fontWeight: '600', marginRight: 8 },
-  section: { paddingVertical: 24, paddingHorizontal: 16 },
-  sectionTitle: { fontSize: 20, fontWeight: 'bold', textAlign: 'center', color: '#1f2937', marginBottom: 16 },
-  sectionSubText: { textAlign: 'center', color: '#4b5563', marginBottom: 12 },
-  featureCard: {
-    flexDirection: 'row',
-    backgroundColor: '#ffffffcc',
-    padding: 16,
-    borderRadius: 12,
-    marginBottom: 12,
-    alignItems: 'flex-start',
-    gap: 12,
+
+  section: {
+    paddingVertical: 32,
+    paddingHorizontal: 16,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#1e293b',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  sectionSubText: {
+    textAlign: 'center',
+    color: '#475569',
+    marginBottom: 16,
+  },
+  featureCardCarousel: {
+    width: 280,
+    marginRight: 16,
+    backgroundColor: '#f0fdfa',
+    padding: 20,
+    borderRadius: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   featureIcon: {
-    padding: 8,
-    backgroundColor: '#e0f2fe',
+    padding: 12,
+    backgroundColor: '#dbeafe',
     borderRadius: 50,
+    marginBottom: 12,
   },
-  featureTitle: { fontSize: 16, fontWeight: '600', marginBottom: 4 },
-  featureDesc: { fontSize: 14, color: '#6b7280' },
+  featureTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 6,
+    textAlign: 'center',
+  },
+  featureDesc: {
+    fontSize: 14,
+    color: '#475569',
+    textAlign: 'center',
+  },
   languageTags: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -172,35 +240,93 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   langTag: {
-    backgroundColor: '#e5e7eb',
+    backgroundColor: '#bae6fd',
     borderRadius: 999,
     paddingHorizontal: 12,
     paddingVertical: 6,
   },
-  langText: { fontSize: 12, color: '#374151' },
-  ctaSection: { padding: 16 },
-  ctaCard: {
-    borderRadius: 16,
-    padding: 24,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
+  langText: { fontSize: 12, color: '#0f172a' },
+
+  ctaSection: {
+    marginHorizontal: 16,
+    marginTop: 24,
+    marginBottom: 32,
+    borderRadius: 24,
+    overflow: 'hidden',
+    elevation: 5,
   },
-  ctaTitle: { fontSize: 20, fontWeight: 'bold', color: 'white', textAlign: 'center', marginBottom: 8 },
-  ctaSubtitle: { color: 'rgba(255,255,255,0.9)', textAlign: 'center', marginBottom: 16 },
-  getStartedBtn: {
+  
+  ctaCard: {
+    paddingVertical: 32,
+    paddingHorizontal: 24,
+    alignItems: 'center',
+    borderRadius: 24,
+    shadowColor: '#000',
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    shadowOffset: { width: 0, height: 4 },
+    elevation: 6,
+  },
+  
+  ctaIconCircle: {
+    backgroundColor: '#ffffff30',
+    padding: 16,
+    borderRadius: 999,
+    marginBottom: 16,
+  },
+  
+  ctaTitle: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#fff',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  
+  ctaSubtitle: {
+    fontSize: 14,
+    color: '#f0fdf4',
+    textAlign: 'center',
+    marginBottom: 24,
+    lineHeight: 22,
+  },
+  
+  ctaButton: {
     backgroundColor: 'white',
     paddingVertical: 12,
+    paddingHorizontal: 32,
+    borderRadius: 999,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 3,
+  },
+  
+  ctaButtonText: {
+    color: '#0f172a',
+    fontWeight: '600',
+    fontSize: 16,
+    textAlign: 'center',
+  },
+  
+  getStartedBtn: {
+    backgroundColor: '#3b82f6',
+    paddingVertical: 12,
+    paddingHorizontal: 24,
     borderRadius: 8,
   },
   getStartedText: {
     textAlign: 'center',
-    color: '#0f172a',
+    color: 'white',
     fontWeight: '600',
   },
-  footer: { padding: 16 },
-  footerText: { textAlign: 'center', color: '#6b7280', fontSize: 12 },
+
+  footer: {
+    padding: 16,
+    alignItems: 'center',
+  },
+  footerText: { color: '#64748b', fontSize: 12 },
 });
 
 export default Landing;
-

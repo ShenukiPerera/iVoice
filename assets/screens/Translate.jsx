@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, StyleSheet, Switch } from 'react-native';
 import { Picker } from '@react-native-picker/picker'; // Corrected import
-import appStyles from '../styles/HomePageStyles'; // Import the styles
+import appStyles from '../styles/TranslateStyles'; // Import the styles
 
 const HomePage = () => {
   const [inputText, setInputText] = useState('');

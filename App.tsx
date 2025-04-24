@@ -19,15 +19,15 @@ export default function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Home1"
-          component={Home1Page}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="Home"
           component={HomeTabs}
           options={{ headerShown: false }}
         />
+        {/* <Stack.Screen
+          name="Translate"
+          component={HomeTabs}
+          options={{ headerShown: false }}
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
